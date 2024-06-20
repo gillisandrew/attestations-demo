@@ -18,5 +18,5 @@ LDFLAGS=(
 
 # STEP 3: Actual Go build process
 
-GOOS="linux"; GOARCH="amd64"; go build -ldflags="${LDFLAGS[*]}" -o app-$GOOS-$GOARCH-$VERSION
-GOOS="darwin"; GOARCH="arm64"; go build -ldflags="${LDFLAGS[*]}" -o app-$GOOS-$GOARCH-$VERSION
+GOOS="linux" GOARCH="amd64" go build -ldflags="${LDFLAGS[*]}" -o app-$GOOS-$GOARCH-$VERSION
+GOOS="darwin" GOARCH="arm64" go build -ldflags="${LDFLAGS[*]}" -o app-$GOOS-$GOARCH-$VERSION
