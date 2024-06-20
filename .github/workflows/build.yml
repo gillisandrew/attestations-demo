@@ -48,15 +48,20 @@ jobs:
           body: |
             Download and verify the provenance using the following commands:
 
-            ```bash
-            # Linux
+            ## Linux
+
+            ```shell
             curl -sSLO https://github.com/gillisandrew/attestations-demo/releases/download/${{ github.ref_name }}/app-linux-amd64-${{ github.ref_name }}
             gh attestation verify -o ${{ github.repository_owner }} app-linux-amd64-${{ github.ref_name }}
+            ```
+
+            ## MacOS
             
-            # MacOS
+            ```shell
             curl -sSLO https://github.com/gillisandrew/attestations-demo/releases/download/${{ github.ref_name }}/app-darwin-arm64-${{ github.ref_name }}
             gh attestation verify -o ${{ github.repository_owner }} app-darwin-arm64-${{ github.ref_name }}
             ```
+
           files: |
             app-*
             attestations-${{ github.ref_name }}.jsonl
