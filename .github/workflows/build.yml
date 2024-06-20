@@ -50,7 +50,9 @@ jobs:
         with:
           body: |
             ```bash
-            gh attestation verify -o ${{ github.repository_owner }} https://github.com/gillisandrew/attestations-demo/releases/download/${{ github.ref_name }}/attestations-demo-${{ github.ref_name }}
+            curl -sSl https://github.com/gillisandrew/attestations-demo/releases/download/${{ github.ref_name }}/attestations-demo-${{ github.ref_name }} -o attestations-demo-${{ github.ref_name }}
+            gh attestation verify -o ${{ github.repository_owner }} attestations-demo-${{ github.ref_name }}
+
             ```
           files: |
             attestations-demo-${{ github.ref_name }}
