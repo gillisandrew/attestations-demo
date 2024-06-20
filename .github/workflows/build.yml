@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
-          cache-dependency-path: 'go.sum'
 
       - name: Build executable
         env:
@@ -49,6 +48,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          body: |
+            ```bash
+            gh attestation verify -o ${{ github.repository_owner }} https://github.com/gillisandrew/attestations-demo/releases/download/${{ github.ref_name }}/attestations-demo-${{ github.ref_name }}
+            ```
           files: |
             attestations-demo-${{ github.ref_name }}
             attestations-demo-${{ github.ref_name }}.jsonl
