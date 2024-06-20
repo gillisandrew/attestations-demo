@@ -23,7 +23,6 @@ jobs:
           GOARCH: amd64
           CGO_ENABLED: '0'
           PACKAGE: 'github.com/${{ github.repository }}'
-          VERSION: v${{github.ref_name}}
           COMMIT_HASH: '${{ github.sha }}'
         run: ./scripts/build.sh
       - name: Upload artifact
