@@ -32,7 +32,7 @@ jobs:
           path: attestations-demo
           name: attestations-demo-${{ github.run_id }}-${{ github.sha }}
       - name: Attest build provenance
-        uses: actions/attest-provenance@v1
+        uses: actions/attest-build-provenance@v1
         with:
           subject-path: attestations-demo
             
