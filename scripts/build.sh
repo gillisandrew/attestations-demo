@@ -13,7 +13,7 @@ BUILD_TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S')
 LDFLAGS=(
   "-X '${PACKAGE}/version.Version=${VERSION}'"
   "-X '${PACKAGE}/version.CommitHash=${COMMIT_HASH:0:6}'"
-  "-X '${PACKAGE}/version.BuildTime=${BUILD_TIMESTAMP}'"
+  "-X '${PACKAGE}/version.BuildTimestamp=${BUILD_TIMESTAMP}'"
 )
 
 # STEP 3: Actual Go build process
