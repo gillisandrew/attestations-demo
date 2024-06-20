@@ -26,4 +26,13 @@ jobs:
           VERSION: v${{github.ref_name}}
           COMMIT_HASH: '${{ github.sha }}'
         run: ./scripts/build.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: attestations-demo
+          name: attestations-demo-${{ github.run_id }}-${{ github.sha }}
+      - name: Attest build provenance
+        uses: actions/attest-provenance@v1
+        with:
+          subject-path: attestations-demo
             
