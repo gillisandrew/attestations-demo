@@ -1,0 +1,29 @@
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  id-token: write
+  attestations: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Setp go using the mod version
+      - name: Set up Go 1.17
+        uses: actions/setup-go@v2
+        with:
+          go-version-file: 'go.mod'
+          cache-dependency-path: 'go.sum'
+      - name: Build executable
+        env:
+          GOOS: linux
+          GOARCH: amd64
+          CGO_ENABLED: '0'
+          PACKAGE: 'github.com/${{ github.repository }}'
+          VERSION: v${{github.ref_name}}
+          COMMIT_HASH: '${{ github.sha }}'
+        run: ./scripts/build.sh
+            

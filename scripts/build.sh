@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# STEP 1: Determinate the required values
+# STEP 1: Determine the required values
 
-PACKAGE="github.com/gillisandrew/attestations-demo"
-VERSION="$(git describe --tags --always --abbrev=0 --match='v[0-9]*.[0-9]*.[0-9]*' 2> /dev/null | sed 's/^.//')"
-COMMIT_HASH="$(git rev-parse --short HEAD)"
+PACKAGE="${PACKAGE:=github.com/gillisandrew/attestations-demo}"
+VERSION="${VERSION:=$(git describe --tags --always --abbrev=0 --match='v[0-9]*.[0-9]*.[0-9]*' 2> /dev/null | sed 's/^.//')}"
+COMMIT_HASH="${COMMIT_HASH:=$(git rev-parse --short HEAD)}"
 BUILD_TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S')
 
 
@@ -12,10 +12,9 @@ BUILD_TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S')
 
 LDFLAGS=(
   "-X '${PACKAGE}/version.Version=${VERSION}'"
-  "-X '${PACKAGE}/version.CommitHash=${COMMIT_HASH}'"
+  "-X '${PACKAGE}/version.CommitHash=${COMMIT_HASH:0:6}'"
   "-X '${PACKAGE}/version.BuildTime=${BUILD_TIMESTAMP}'"
 )
-
 
 # STEP 3: Actual Go build process
 
