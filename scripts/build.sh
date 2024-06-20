@@ -18,4 +18,4 @@ LDFLAGS=(
 
 # STEP 3: Actual Go build process
 
-go build -ldflags="${LDFLAGS[*]}" -o "attestations-demo-${VERSION}"
+go build -ldflags="${LDFLAGS[*]}" -o attestations-demo
