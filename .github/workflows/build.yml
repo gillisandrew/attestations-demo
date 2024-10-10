@@ -38,8 +38,7 @@ jobs:
         with:
           file: './${{env.APP_NAME}}'
           format: 'spdx-json'
-          artifact-name: '${{env.APP_SBOM_NAME}}'
-          output-file: '.'
+          output-file: './${{env.APP_SBOM_NAME}}'
 
       - name: Generate SBOM attestation
         id: attest_sbom
