@@ -11,8 +11,8 @@ permissions:
   actions: read
 
 env:
-  APP_NAME: '${{github.repository}}-app'
-  APP_SBOM_NAME: '${{github.repository}}-app.spdx.json'
+  APP_NAME: 'attestations-demo-app'
+  APP_SBOM_NAME: 'attestations-demo-app-sbom.spdx.json'
 
 jobs:
   build:
@@ -37,6 +37,7 @@ jobs:
         uses: anchore/sbom-action@v0
         with:
           file: './${{env.APP_NAME}}'
+          format: 'spdx-json'
           artifact-name: '${{env.APP_SBOM_NAME}}'
 
       - name: Generate SBOM attestation
