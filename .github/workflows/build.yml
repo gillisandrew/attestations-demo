@@ -8,6 +8,7 @@ permissions:
   contents: write
   id-token: write
   attestations: write
+  actions: read
 
 jobs:
   build:
@@ -20,7 +21,8 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
-
+      - name: Build SBOM
+        uses: anchore/sbom-action@v0
       - name: Build executable
         env:
           CGO_ENABLED: '0'
@@ -66,4 +68,6 @@ jobs:
           files: |
             app-*
             attestations-${{ github.ref_name }}.jsonl
+            *.spdx
+            *.spdx.json
             
