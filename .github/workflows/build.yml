@@ -23,6 +23,9 @@ jobs:
           go-version-file: 'go.mod'
       - name: Build SBOM
         uses: anchore/sbom-action@v0
+        with:
+          path: '.'
+
       - name: Build executable
         env:
           CGO_ENABLED: '0'
