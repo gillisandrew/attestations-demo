@@ -39,6 +39,7 @@ jobs:
           file: './${{env.APP_NAME}}'
           format: 'spdx-json'
           artifact-name: '${{env.APP_SBOM_NAME}}'
+          output-file: '.'
 
       - name: Generate SBOM attestation
         id: attest_sbom
@@ -46,7 +47,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           subject-path: './${{env.APP_NAME}}'
-          sbom-path: '${{env.APP_SBOM_NAME}}'
+          sbom-path: './${{env.APP_SBOM_NAME}}'
 
       - name: Attest build provenance
         id: attest_build_provenance
