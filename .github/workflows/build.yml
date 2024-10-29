@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       digest: ${{ steps.get_digest.outputs.digest }}
+      name: ${{env.APP_NAME}}
     steps:
       - name: Check out repo
         id: checkout_repo
@@ -83,5 +84,6 @@ jobs:
     needs:
       - build
     with:
+      name: ${{ needs.build.outputs.name }}
       digest: ${{ needs.build.outputs.digest }}
     
