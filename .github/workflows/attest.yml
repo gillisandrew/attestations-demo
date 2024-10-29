@@ -16,5 +16,6 @@ jobs:
       - name: Attest
         uses: actions/attest-build-provenance@v1
         with:
+          subject-name: ${{ inputs.name }}
           subject-digest: ${{ inputs.digest }}
     
