@@ -1,5 +1,4 @@
-name: Build demo app
-
+name: Build
 on:
   workflow_dispatch: {}
   push:
@@ -53,5 +52,5 @@ jobs:
     needs:
       - build
     with:
-      artifact-name: ${{env.APP_NAME}}
+      artifact-name: ${{ needs.build.outputs.name }}
     
