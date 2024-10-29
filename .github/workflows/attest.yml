@@ -17,5 +17,5 @@ jobs:
         uses: actions/attest-build-provenance@v1
         with:
           subject-name: ${{ inputs.name }}
-          subject-digest: ${{ inputs.digest }}
+          subject-digest: sha256:${{ inputs.digest }}
     
