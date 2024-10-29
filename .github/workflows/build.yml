@@ -17,6 +17,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      digest: ${{ steps.get_digest.outputs.digest }}
     steps:
       - name: Check out repo
         id: checkout_repo
@@ -58,11 +60,6 @@ jobs:
       - name: Get Digest
         id: get_digest
         run: echo digest="$(shasum -a 256 ${{env.APP_NAME}})" >> "$GITHUB_OUTPUT"
-      - name: Another Attestation
-        uses: gillisandrew/attestations-demo/.github/workflows/attest.yml@b56a9fedbdf767dac1c6e65ae78336b7987d5168
-        with:
-          digest: ${{ steps.get_digest.outputs.digest }}
-          
       - name: Create release
         id: create_release
         uses: softprops/action-gh-release@v2
@@ -81,4 +78,8 @@ jobs:
             ${{env.APP_NAME}}
             ${{env.APP_SBOM_NAME}}
             attestations-${{ github.ref_name }}.jsonl
-            
+  attest:
+    uses: gillisandrew/attestations-demo/.github/workflows/attest.yml@b56a9fedbdf767dac1c6e65ae78336b7987d5168
+    with:
+      digest: ${{ needs..build.outputs.digest }}
+    
