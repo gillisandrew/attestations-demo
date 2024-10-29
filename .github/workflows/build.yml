@@ -60,7 +60,7 @@ jobs:
           show-summary: true
       - name: Get Digest
         id: get_digest
-        run: echo digest="$(shasum -a 256 ${{env.APP_NAME}})" >> "$GITHUB_OUTPUT"
+        run: echo digest="$(shasum -a 256 ${{env.APP_NAME}} | sed 's/ .*//')" >> "$GITHUB_OUTPUT"
       - name: Create release
         id: create_release
         uses: softprops/action-gh-release@v2
