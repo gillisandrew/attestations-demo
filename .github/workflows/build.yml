@@ -80,6 +80,8 @@ jobs:
             attestations-${{ github.ref_name }}.jsonl
   attest:
     uses: ./.github/workflows/attest.yml
+    needs:
+      - build
     with:
-      digest: ${{ needs..build.outputs.digest }}
+      digest: ${{ needs.build.outputs.digest }}
     
