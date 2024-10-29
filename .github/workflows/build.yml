@@ -1,3 +1,5 @@
+name: Build demo app
+
 on:
   workflow_dispatch: {}
   push:
@@ -11,14 +13,12 @@ permissions:
   actions: read
 
 env:
-  APP_NAME: 'attestations-demo-app'
-  APP_SBOM_NAME: 'attestations-demo-app-sbom.spdx.json'
+  APP_NAME: ${{ github.event.repository.name }}-app
 
 jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      digest: ${{ steps.get_digest.outputs.digest }}
       name: ${{env.APP_NAME}}
     steps:
       - name: Check out repo
@@ -53,5 +53,5 @@ jobs:
     needs:
       - build
     with:
-      artifact-name: ${{ needs.build.outputs.name }}
+      artifact-name: ${{env.APP_NAME}}
     
