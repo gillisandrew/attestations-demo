@@ -1,0 +1,14 @@
+name: Test whodunit
+on:
+  workflow_call:
+    inputs:
+      digest:
+        type: string
+        required: true
+  
+jobs:
+  attest:
+    uses: actions/attest-build-provenance@v1
+    with:
+      subject-digest: ${{ inputs.digest }}
+    
