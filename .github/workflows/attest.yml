@@ -2,6 +2,9 @@ name: Test whodunit
 on:
   workflow_call:
     inputs:
+      name:
+        type: string
+        required: true
       digest:
         type: string
         required: true
