@@ -79,7 +79,7 @@ jobs:
             ${{env.APP_SBOM_NAME}}
             attestations-${{ github.ref_name }}.jsonl
   attest:
-    uses: ./.github/workflows/attest.yml@b56a9fedbdf767dac1c6e65ae78336b7987d5168
+    uses: ./.github/workflows/attest.yml
     with:
       digest: ${{ needs..build.outputs.digest }}
     
