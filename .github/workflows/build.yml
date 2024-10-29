@@ -49,7 +49,7 @@ jobs:
           name: ${{env.APP_NAME}}
           path: ./${{env.APP_NAME}}
   sbom:
-    uses: ./.github/workflows/sbom.yml
+    uses: gillisandrew/workflows/.github/workflows/sbom.yml@v1
     needs:
       - build
     with:
